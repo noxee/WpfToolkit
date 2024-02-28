@@ -700,16 +700,9 @@ namespace System.Windows.Controls
         /// <param name="newItem">The new item.</param>
         private void OnSelectedItemChanged(object newItem)
         {
-            string text;
+            string textOrSearchText = !string.IsNullOrEmpty(Text) ? Text : SearchText;
 
-            if (newItem == null)
-            {
-                text = SearchText;
-            }
-            else
-            {
-                text = FormatValue(newItem, true);
-            }
+            string text = newItem == null ? textOrSearchText : FormatValue(newItem, true);
 
             // Update the Text property and the TextBox values
             UpdateTextValue(text);
